@@ -3,10 +3,47 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Dificult Password</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
+
+    <section>
+    <input type="text" placeholder="P4$5WORD!" id="result-password" readonly>
+    <p id="password-length"></p>
+    <div>
+      <p>4</p>
+      <input type="range" min="4" max="32" id="range-bar">
+      <p>32</p>
+    </div>
+    <div>
+      <div>
+        <p>Include Uppercase</p>
+        <input type="checkbox" id="include-uppercase">
+        <label for="include-uppercase"></label>
+      </div>
+      <div>
+        <p>Include Lowercase</p>
+        <input type="checkbox" id="include-lowercase">
+        <label for="include-lowercase"></label>
+      </div>
+      <div>
+        <p>Include Numbers</p>
+        <input type="checkbox" id="include-numbers">
+        <label for="include-numbers"></label>
+      </div>
+      <div>
+        <p>Include Symbols</p>
+        <input type="checkbox" id="include-symbols">
+        <label for="include-symbols"></label>
+      </div>
+    </div>
+    <button id="generate-password-button">Generate Password</button>
+    </section>
+
     <script src="./js/scripts.js"></script>
   </body>
 </html>
