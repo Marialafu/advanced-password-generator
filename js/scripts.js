@@ -14,38 +14,88 @@ let passwordLengthElement = document.getElementById('password-length');
 
 const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-const numbers = '01234567890';
+const numbers = '0123456789';
 const symbols = '!@#$%^&*()_+-={}[]:;<>,.?</>';
 
 let password = '';
+let definedCharacters = '';
+
+const generateAleatoryNumber = maxLength => {
+  const aleatoryNumber = Math.floor(Math.random() * maxLength);
+  return aleatoryNumber;
+};
 
 passwordLengthElement.textContent = `LENGHT: ${rangeBarElement.value}`;
-
 const adaptLength = () => {
   passwordLengthElement.textContent = `LENGHT: ${rangeBarElement.value}`;
 };
 
-const generateAleatoryCharacter = characters => {
-  const aleatoryPosition = Math.floor(Math.random() * characters.length - 1);
-  const aleatoryCharacter = characters.charAt(aleatoryPosition);
-  return aleatoryCharacter;
-};
-
-// const generateAleatoryPassword = () => {
-//   let password = '';
-//   for (let i = 0; i < rangeBarElement.value; i++)
-//     password += generateAleatoryCharacter(characters);
-//   resultPasswordElement.value = password;
-// };
-
-const includeDefinedPassword = () => {
-  if (includeLowercaseElement.checked) {
-    console.log((password += lowercaseLetters.charAt(0)));
+const activateGeneratePasswordButton = () => {
+  if (
+    includeLowercaseElement.checked ||
+    includeUppercaseElement.checked ||
+    includeNumbersElement.checked ||
+    includeSymbolsElement.checked
+  ) {
+    generatePasswordButton.disabled = false;
   } else {
-    console.log(false);
+    generatePasswordButton.disabled = true;
   }
 };
-includeLowercaseElement.addEventListener('change', includeDefinedPassword);
 
+const includeCharacters = () => {
+  definedCharacters = '';
+  password = '';
+
+  if (includeLowercaseElement.checked) {
+    password += uppercaseLetters.charAt(
+      generateAleatoryNumber(uppercaseLetters.length)
+    );
+    definedCharacters += lowercaseLetters;
+  }
+  if (includeUppercaseElement.checked) {
+    password += lowercaseLetters.charAt(
+      generateAleatoryNumber(lowercaseLetters.length)
+    );
+    definedCharacters += uppercaseLetters;
+  }
+  if (includeNumbersElement.checked) {
+    definedCharacters += numbers;
+    password += numbers.charAt(generateAleatoryNumber(numbers.length));
+  }
+  if (includeSymbolsElement.checked) {
+    password += symbols.charAt(generateAleatoryNumber(symbols.length));
+    definedCharacters += symbols;
+  }
+};
+
+const generatePassword = () => {
+  includeCharacters();
+  for (let i = password.length; i < rangeBarElement.value; i++) {
+    password += includeCharacters().charAt(
+      generateAleatoryNumber(definedCharacters.length)
+    );
+  }
+  resultPasswordElement.value = password;
+
+  password = '';
+};
+generatePasswordButton.addEventListener('click', generatePassword);
 rangeBarElement.addEventListener('input', adaptLength);
-// generatePasswordButton.addEventListener('click', generateAleatoryPassword);
+
+includeUppercaseElement.addEventListener(
+  'change',
+  activateGeneratePasswordButton
+);
+includeLowercaseElement.addEventListener(
+  'change',
+  activateGeneratePasswordButton
+);
+includeSymbolsElement.addEventListener(
+  'change',
+  activateGeneratePasswordButton
+);
+includeNumbersElement.addEventListener(
+  'change',
+  activateGeneratePasswordButton
+);
