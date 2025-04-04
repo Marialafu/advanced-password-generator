@@ -17,35 +17,58 @@ const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
 const numbers = '01234567890';
 const symbols = '!@#$%^&*()_+-={}[]:;<>,.?</>';
 
+
 let password = '';
+
+const generateAleatoryNumber = () => {
+  const aleatoryNumber = Math.floor(Math.random()*(uppercaseLetters.length))
+  return aleatoryNumber
+}
 
 passwordLengthElement.textContent = `LENGHT: ${rangeBarElement.value}`;
 
 const adaptLength = () => {
   passwordLengthElement.textContent = `LENGHT: ${rangeBarElement.value}`;
 };
+rangeBarElement.addEventListener('input', adaptLength)
 
-const generateAleatoryCharacter = characters => {
-  const aleatoryPosition = Math.floor(Math.random() * characters.length - 1);
-  const aleatoryCharacter = characters.charAt(aleatoryPosition);
-  return aleatoryCharacter;
-};
 
-// const generateAleatoryPassword = () => {
-//   let password = '';
-//   for (let i = 0; i < rangeBarElement.value; i++)
-//     password += generateAleatoryCharacter(characters);
-//   resultPasswordElement.value = password;
-// };
+const includeUpperCase = () => {
+  const aleatoryUppercase = uppercaseLetters.charAt(generateAleatoryNumber())
+  if (includeUppercaseElement.checked === true){
+    generatePasswordButton.disabled = false
+    return aleatoryUppercase
+  } else {generatePasswordButton.disabled = true}
+}
+includeUppercaseElement.addEventListener('change', includeUpperCase)
 
-const includeDefinedPassword = () => {
-  if (includeLowercaseElement.checked) {
-    console.log((password += lowercaseLetters.charAt(0)));
-  } else {
-    console.log(false);
+const includeLowerCase = () => {
+  const aleatoryLowercase = lowercaseLetters.charAt(generateAleatoryNumber())
+  if (includeLowercaseElement.checked === true){
+    generatePasswordButton.disabled = false
+    return aleatoryLowercase
+  } 
+}
+includeLowercaseElement.addEventListener('change', includeLowerCase)
+
+
+const charactersInPassword = () => {
+  let characters = 'hola'
+  if (includeLowerCase === true){
+    characters += includeLowerCase()
   }
-};
-includeLowercaseElement.addEventListener('change', includeDefinedPassword);
+  console.log(includeLowerCase());
+  
+  return characters
+}
 
-rangeBarElement.addEventListener('input', adaptLength);
-// generatePasswordButton.addEventListener('click', generateAleatoryPassword);
+const generatePassword = () => {
+  password = ''
+  for (let i = 0; i < rangeBarElement.value; i++){
+    password += charactersInPassword()
+  }
+  resultPasswordElement.value = password
+  
+}
+generatePasswordButton.addEventListener('click', generatePassword)
+
