@@ -5,6 +5,7 @@ const generatePasswordButton = document.getElementById(
 
 const rangeBarElement = document.getElementById('range-bar');
 
+
 const includeUppercaseElement = document.getElementById('include-uppercase');
 const includeLowercaseElement = document.getElementById('include-lowercase');
 const includeNumbersElement = document.getElementById('include-numbers');
@@ -12,10 +13,13 @@ const includeSymbolsElement = document.getElementById('include-symbols');
 
 let passwordLengthElement = document.getElementById('password-length');
 
-const uppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-const lowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-const numbers = '0123456789';
-const symbols = '!@#$%^&*()_+-={}[]:;<>,.?</>';
+const characters = {
+  uppercaseLetters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+  lowercaseLetters: 'abcdefghijklmnopqrstuvwxyz',
+  numbers: '0123456789',
+  symbols: '!@#$%^&*()_+-={}[]:;<>,.?</>',
+}
+
 
 let password = '';
 let definedCharacters = '';
@@ -48,25 +52,22 @@ const includeCharacters = () => {
   password = '';
 
   if (includeUppercaseElement.checked) {
-    password += uppercaseLetters.charAt(generateAleatoryNumber(uppercaseLetters.length))
-    definedCharacters += uppercaseLetters;
+    password += characters.uppercaseLetters.charAt(generateAleatoryNumber(characters.uppercaseLetters.length))
+    definedCharacters += characters.uppercaseLetters;
   }
   if (includeLowercaseElement.checked) {
-    password += lowercaseLetters.charAt(generateAleatoryNumber(lowercaseLetters.length))
-    definedCharacters += lowercaseLetters;
+    password += characters.lowercaseLetters.charAt(generateAleatoryNumber(characters.lowercaseLetters.length))
+    definedCharacters += characters.lowercaseLetters;
   }
   if (includeNumbersElement.checked) {
-    password += numbers.charAt(generateAleatoryNumber(numbers.length));
-    definedCharacters += numbers;
+    password += characters.numbers.charAt(generateAleatoryNumber(characters.numbers.length));
+    definedCharacters += characters.numbers;
     
   }
   if (includeSymbolsElement.checked) {
-    password += symbols.charAt(generateAleatoryNumber(symbols.length));
-    definedCharacters += symbols;
+    password += characters.symbols.charAt(generateAleatoryNumber(characters.symbols.length));
+    definedCharacters += characters.checkedsymbols;
   }
-  console.log(password);
-  console.log(definedCharacters);
-  
   
 };
 
