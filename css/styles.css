@@ -21,4 +21,133 @@ nav ul {
 body {
   margin: 0;
   font-family: sans-serif;
+  background-color: #110032;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.password-generator{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 32.25rem;
+  padding: 16px;
+}
+
+.password-block {
+  background-color: #241442;
+  padding: 0;
+  margin: 0;
+  border-radius: 0.5rem;
+  border: none;
+  height: 3.75rem;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+.password-text{
+  font-size: 1rem;
+  color: rgb(255, 255, 255);
+}
+.font-family{
+    font-family: "DM Mono", monospace;
+    font-weight: 400;
+    font-style: normal;
+    color: rgb(255, 255, 255);
+}
+.text{
+  font-size: 1rem;
+  margin: 0;
+}
+
+.range-component-bar{
+  background-color: #241442;
+  height: 3.75rem;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.9375rem;
+}
+.range-bar{
+  width: 100%;
+  height: 0.25rem;
+  accent-color: #7400E4;
+}
+.generate-password-button{
+  border: 0;
+  border-radius: 0.5rem;
+  height: 3.75rem;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  background-image: linear-gradient(to right, #7944E7, #8300AB);
+  transition: transform 0.15s ease-in-out;
+}
+.generate-password-button:hover{
+  transform: scale(1.1);
+}
+.generate-password-button:disabled{
+    background-color: rgba(239, 239, 239, 0.3);
+    opacity: 0.5;
+    transform: none;
+}
+
+.checkbox-all{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.checkbox-group{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #241442;
+  border: 0;
+  border-radius: 0.5rem;
+  height: 3.75rem;
+  box-shadow: 0 0.25rem 0.25rem 0 rgba(0, 0, 0, 0.25);
+  padding: 18px;
+}
+
+.checkbox-switch{
+  display: none;
+}
+.checkbox-switch:checked + .switch {
+  background-image: linear-gradient(to right, #7944E7, #8300AB);
+}
+.switch{
+  display: block;
+  position: relative;
+  width: 4.6875rem;
+  height: 2.5rem;
+  background-color: #808080;
+  border-radius: 1.25rem;
+}
+
+.switch::before {
+  content: '';
+  position: absolute;
+  width: 1.875rem;
+  height: 1.875rem;
+  background-color: #D9D9D9;
+  border-radius: 100%;
+  top: 0.3125rem;
+  left: 0.5rem;
+  transition: translate 0.25s;
+}
+.checkbox-switch:checked + .switch::before{
+ translate: 100%;
+}
+
+
+@media screen and (min-width: 600px){
+  .password-generator{
+    width: 32.25rem;
+  }
+  .password-text{
+    font-size: 1.5rem;
+  }
 }

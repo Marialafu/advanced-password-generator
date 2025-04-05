@@ -11,37 +11,37 @@
   </head>
   <body>
 
-    <section>
-    <input type="text" placeholder="P4$5WORD!" id="result-password" readonly>
-    <p id="password-length"></p>
-    <div>
-      <p>4</p>
-      <input type="range" min="4" max="32" id="range-bar">
-      <p>32</p>
+    <section class="password-generator">
+    <input type="text" placeholder="P4$5WORD!" id="result-password" readonly class="password-block password-text">
+    <p id="password-length" class="font-family"></p>
+    <div class="range-component-bar">
+      <p class="font-family text">4</p>
+      <input type="range" min="4" max="32" id="range-bar" class="range-bar">
+      <p class="font-family text">32</p>
     </div>
-    <div>
-      <div>
-        <p>Include Uppercase</p>
-        <input type="checkbox" id="include-uppercase">
-        <label for="include-uppercase"></label>
+    <div class="checkbox-all">
+      <div class="checkbox-group">
+        <p class="font-family">Include Uppercase</p>
+        <input type="checkbox" id="include-uppercase" class="checkbox-switch">
+        <label for="include-uppercase" class="switch"></label>
       </div>
-      <div>
-        <p>Include Lowercase</p>
-        <input type="checkbox" id="include-lowercase">
-        <label for="include-lowercase"></label>
+      <div class="checkbox-group">
+        <p class="font-family">Include Lowercase</p>
+        <input type="checkbox" id="include-lowercase" class="checkbox-switch">
+        <label for="include-lowercase" class="switch"></label>
       </div>
-      <div>
-        <p>Include Numbers</p>
-        <input type="checkbox" id="include-numbers">
-        <label for="include-numbers"></label>
+      <div class="checkbox-group">
+        <p class="font-family">Include Numbers</p>
+        <input type="checkbox" id="include-numbers" class="checkbox-switch">
+        <label for="include-numbers" class="switch"></label>
       </div>
-      <div>
-        <p>Include Symbols</p>
-        <input type="checkbox" id="include-symbols">
-        <label for="include-symbols"></label>
+      <div class="checkbox-group">
+        <p class="font-family">Include Symbols</p>
+        <input type="checkbox" id="include-symbols" class="checkbox-switch">
+        <label for="include-symbols" class="switch"></label>
       </div>
     </div>
-    <button id="generate-password-button" disabled>Generate Password</button>
+    <button id="generate-password-button" disabled class="font-family text generate-password-button">Generate Password</button>
     </section>
 
     <script src="./js/scripts.js"></script>

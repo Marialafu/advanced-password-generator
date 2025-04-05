@@ -47,37 +47,38 @@ const includeCharacters = () => {
   definedCharacters = '';
   password = '';
 
-  if (includeLowercaseElement.checked) {
-    password += uppercaseLetters.charAt(
-      generateAleatoryNumber(uppercaseLetters.length)
-    );
-    definedCharacters += lowercaseLetters;
-  }
   if (includeUppercaseElement.checked) {
-    password += lowercaseLetters.charAt(
-      generateAleatoryNumber(lowercaseLetters.length)
-    );
+    password += uppercaseLetters.charAt(generateAleatoryNumber(uppercaseLetters.length))
     definedCharacters += uppercaseLetters;
   }
+  if (includeLowercaseElement.checked) {
+    password += lowercaseLetters.charAt(generateAleatoryNumber(lowercaseLetters.length))
+    definedCharacters += lowercaseLetters;
+  }
   if (includeNumbersElement.checked) {
-    definedCharacters += numbers;
     password += numbers.charAt(generateAleatoryNumber(numbers.length));
+    definedCharacters += numbers;
+    
   }
   if (includeSymbolsElement.checked) {
     password += symbols.charAt(generateAleatoryNumber(symbols.length));
     definedCharacters += symbols;
   }
+  console.log(password);
+  console.log(definedCharacters);
+  
+  
 };
 
 const generatePassword = () => {
   includeCharacters();
   for (let i = password.length; i < rangeBarElement.value; i++) {
-    password += includeCharacters().charAt(
+    password += definedCharacters.charAt(
       generateAleatoryNumber(definedCharacters.length)
     );
   }
   resultPasswordElement.value = password;
-
+  
   password = '';
 };
 generatePasswordButton.addEventListener('click', generatePassword);
