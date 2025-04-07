@@ -5,9 +5,8 @@ const generatePasswordButton = document.getElementById(
 
 const rangeBarElement = document.getElementById('range-bar');
 
-const charactersToIncludeincludeElement = document.querySelectorAll('.checkbox-switch')
-console.dir(charactersToIncludeincludeElement)
-console.log(charactersToIncludeincludeElement[0]);
+const charactersToIncludeincludeElement =
+  document.querySelectorAll('.checkbox-switch');
 
 let passwordLengthElement = document.getElementById('password-length');
 
@@ -15,9 +14,8 @@ const characters = {
   uppercaseLetters: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
   lowercaseLetters: 'abcdefghijklmnopqrstuvwxyz',
   numbers: '0123456789',
-  symbols: '!@#$%^&*()_+-={}[]:;<>,.?</>',
-}
-
+  symbols: '!@#$%^&*()_+-={}[]:;<>,.?</>'
+};
 
 let password = '';
 let definedCharacters = '';
@@ -33,7 +31,6 @@ const adaptLength = () => {
 };
 
 const activateGeneratePasswordButton = () => {
-
   if (
     charactersToIncludeincludeElement[0].checked ||
     charactersToIncludeincludeElement[1].checked ||
@@ -42,7 +39,7 @@ const activateGeneratePasswordButton = () => {
   ) {
     generatePasswordButton.disabled = false;
   } else {
-    generatePasswordButton.disabled = true
+    generatePasswordButton.disabled = true;
   }
 };
 
@@ -50,24 +47,32 @@ const includeCharacters = () => {
   definedCharacters = '';
   password = '';
 
-  if (charactersToIncludeincludeElement[0].checked) {
-    password += characters.uppercaseLetters.charAt(generateAleatoryNumber(characters.uppercaseLetters.length))
-    definedCharacters += characters.uppercaseLetters;
+  for (const element of charactersToIncludeincludeElement) {
+    if (element.checked) {
+      password += characters[element.id].charAt(
+        generateAleatoryNumber(characters[element.id].length)
+      );
+      definedCharacters += characters[element.id];
+    }
   }
-  if (charactersToIncludeincludeElement[1].checked) {
-    password += characters.lowercaseLetters.charAt(generateAleatoryNumber(characters.lowercaseLetters.length))
-    definedCharacters += characters.lowercaseLetters;
-  }
-  if (charactersToIncludeincludeElement[2].checked) {
-    password += characters.numbers.charAt(generateAleatoryNumber(characters.numbers.length));
-    definedCharacters += characters.numbers;
-    
-  }
-  if (charactersToIncludeincludeElement[3].checked) {
-    password += characters.symbols.charAt(generateAleatoryNumber(characters.symbols.length));
-    definedCharacters += characters.checked.symbols;
-  }
-  
+
+  // if (charactersToIncludeincludeElement[0].checked) {
+  //   password += characters.uppercaseLetters.charAt(generateAleatoryNumber(characters.uppercaseLetters.length))
+  //   definedCharacters += characters.uppercaseLetters;
+  // }
+  // if (charactersToIncludeincludeElement[1].checked) {
+  //   password += characters.lowercaseLetters.charAt(generateAleatoryNumber(characters.lowercaseLetters.length))
+  //   definedCharacters += characters.lowercaseLetters;
+  // }
+  // if (charactersToIncludeincludeElement[2].checked) {
+  //   password += characters.numbers.charAt(generateAleatoryNumber(characters.numbers.length));
+  //   definedCharacters += characters.numbers;
+
+  // }
+  // if (charactersToIncludeincludeElement[3].checked) {
+  //   password += characters.symbols.charAt(generateAleatoryNumber(characters.symbols.length));
+  //   definedCharacters += characters.symbols;
+  // }
 };
 
 const generatePassword = () => {
@@ -78,17 +83,12 @@ const generatePassword = () => {
     );
   }
   resultPasswordElement.value = password;
-  
+
   password = '';
 };
 generatePasswordButton.addEventListener('click', generatePassword);
 rangeBarElement.addEventListener('input', adaptLength);
 
-
 charactersToIncludeincludeElement.forEach(checkbox => {
-  checkbox.addEventListener(
-    'change',
-    activateGeneratePasswordButton
-  );
-})
-
+  checkbox.addEventListener('change', activateGeneratePasswordButton);
+});
